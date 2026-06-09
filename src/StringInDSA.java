@@ -51,7 +51,89 @@ public class StringInDSA {
     }
 
 
+    public static void duplicateCharacterFound(String value){
 
+        Map<Character,Integer> map = new HashMap<>();
+
+        for (int i = 0; i < value.length() ; i++) {
+            map.put(value.charAt(i),map.getOrDefault(value.charAt(i),0)+1);
+        }
+        for(Map.Entry<Character,Integer> entry : map.entrySet()){
+            if(entry.getValue() > 1){
+                System.out.println("Character "+entry.getKey()+" - > "+entry.getValue()+" ");
+            }
+        }
+    }
+
+    public static void duplicateArrayElementFound(int [] arr){
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i = 0; i < arr.length; i++){
+            map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+        }
+        for(Map.Entry<Integer,Integer> entry: map.entrySet()){
+            if(entry.getValue() > 1){
+                System.out.println(entry.getKey()+" - > "+ entry.getValue());
+            }
+        }
+    }
+
+    public static void missingNumberIsInAnArray(int [] arr){
+          int n = arr[arr.length-1];
+          int expectedSum = n * (n+1)/2;
+          int actualSum = 0;
+          for(int num : arr){
+              actualSum+=num;
+          }
+          int num =  expectedSum - actualSum;
+        System.out.println("Missing number in an array is " + num);
+    }
+
+    public static void twoSumProblem(int [] arr,int target,String approach){
+        switch (approach){
+            case"approach1":{
+                for(int i = 0; i < arr.length; i++){
+                    for(int j = i +1; j < arr.length; j++){
+                        if((arr[i]+arr[j]) == target){
+                            System.out.println( "Done by On2 approach ===> " +i+" "+ j);
+                        }
+                    }
+                }
+                break;
+            }
+            case"approach2":{
+                Map<Integer,Integer> map = new HashMap<>();
+                for(int i = 0; i < arr.length; i++){
+                  int complement = target - arr[i];
+                  if(map.containsKey(complement)){
+                      System.out.println( "Done by On approach ===> " +map.get(i)+" "+ i);
+                  }
+                  map.put(arr[i],i);
+                }
+                break;
+            }
+            default:{
+                System.out.println("Approach not available");
+            }
+        }
+    }
+
+    public static void nonRepeatingElement(String value){
+        Map<Character,Integer> map = new HashMap<>();
+        for(int i =0; i < value.length(); i++){
+            map.put(value.charAt(i),map.getOrDefault(value.charAt(i),0)+1);
+        }
+        for(Map.Entry<Character,Integer> entry : map.entrySet()){
+            if(entry.getValue() == 1){
+                System.out.println(entry.getKey());
+                break;
+            }
+        }
+    }
+
+    public static void moveAllZeoToEnd(int [] arr){
+
+
+    }
 
 
 
