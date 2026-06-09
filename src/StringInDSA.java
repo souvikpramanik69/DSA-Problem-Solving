@@ -130,18 +130,102 @@ public class StringInDSA {
         }
     }
 
-    public static void moveAllZeoToEnd(int [] arr){
+    // Move all zeros to end while maintaining order of non-zero elements
+    public static int [] moveAllZeoToEnd(int [] arr){
+        int index = 0;
+        for(int num : arr){
+          if(num != 0){
+              arr[index++] = num;
+
+          }
+        }
+        while(index < arr.length){
+            arr[index++] = 0;
+        }
+        return arr;
+    }
+
+    // Move all zeros to first while maintaining order of non-zero elements || Bubble Sort
+    public static int [] moveAllZeoToFirst(int [] arr) {
+      int temp = 0;
+      for(int i = 0 ; i < arr.length; i++){
+        for(int j = i+1; j < arr.length; j++){
+            if(arr[i] > arr[j]){
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+      }
+        return arr;
+    }
+
+    // Valid Parentheses
+    public static boolean isValidParentheses(String str) {
+        Stack<Character> stack = new Stack<>();
+        for(char ch : str.toCharArray()){
+            if(ch == '{' || ch == '(' || ch == '['){
+                stack.push(ch);
+            }
+            else {
+                if(stack.isEmpty()){
+                    return false;
+                }
+                char top = stack.pop();
+                if(( ch == ')' && top != '(') ||
+                    (ch == '}' && top != '{') ||
+                    (ch == ']' && top != '[')){
+                  return false;
+                }
+            }
+        }
+        return stack.isEmpty();
 
 
+    }
+
+    // Palindrom number check
+    public static boolean isPalindromeNumber(int number){
+        int rem;
+        int temp = number;
+        int rev=0;
+        while(number > 0){
+            rem = number % 10;
+            rev = rev * 10 + rem;
+            number = number /10;
+        }
+        if(temp != rev){
+            return false;
+        }
+     return true;
+
+    }
+
+    public static boolean isSunnyNumber(int number){
+           int fixedNumber = number + 1;
+           double squareRoot = Math.sqrt(fixedNumber);
+        if((squareRoot * squareRoot) ==  fixedNumber){
+            return true;
+        }
+       return false;
     }
 
 
 
 
 
-
     public static void main(String[] args) {
-        duplicateCharacterCount("heellloooo");
+
+//        int [] arr = {8,1,4,0,3,0,5};
+//   int [] newArr = moveAllZeoToFirst(arr);
+//        for(int i = 0; i<newArr.length; i++){
+//            System.out.println(newArr[i]);
+//        }
+
+        String str = "{[()]}";
+//        System.out.println(isValidParentheses(str));;
+        System.out.println(isPalindromeNumber(191));
+        System.out.println(isSunnyNumber(48));
 
     }
 }
